@@ -4,10 +4,8 @@
 
 #include "doctest.h"
 #include <stdexcept>
-#include <cassert>
 #include "Board.hpp"
 
-#include "Soldier.hpp"
 #include "FootSoldier.hpp"
 #include "FootCommander.hpp"
 #include "Sniper.hpp"
