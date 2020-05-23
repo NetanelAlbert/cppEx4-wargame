@@ -5,6 +5,7 @@
  * 
  * @author Oz Levi 
  * @author Erel Segal-Halevi
+ * @author Netanel Albert
  * @since  2020-05
  */
 
@@ -46,6 +47,15 @@ class Board {
 
     // returns true iff the board contains one or more soldiers of the given player.
     bool has_soldiers(uint player_number) const;
+
+    ~Board(){
+        for (auto & i : board) {
+            for (auto & j : i) {
+                    delete j;
+                    j = nullptr;
+            }
+        }
+    }
 };
 
 }
