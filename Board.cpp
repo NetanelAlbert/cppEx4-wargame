@@ -30,10 +30,10 @@ namespace WarGame {
                 newPosition.first--;
                 break;
             case MoveDIR::Left:
-                newPosition.second++;
+                newPosition.second--;
                 break;
             case MoveDIR::Right:
-                newPosition.second--;
+                newPosition.second++;
                 break;
         }
         try {

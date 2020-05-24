@@ -45,11 +45,11 @@ TEST_CASE("Create Soldiers"){
 
     // Staging team 2 soldiers
 
-    CHECK_NOTHROW(tmp = (game_board[{19,9}] = new FootCommander(2)));
+    CHECK_NOTHROW(tmp = (game_board[{19,0}] = new FootCommander(2)));
     all_soldiers.push_back(tmp);
     CHECK_NOTHROW(tmp = (game_board[{19,10}] = new ParamedicCommander(2)));
     all_soldiers.push_back(tmp);
-    CHECK_NOTHROW(tmp = (game_board[{19,11}] = new SniperCommander(2)));
+    CHECK_NOTHROW(tmp = (game_board[{19,19}] = new SniperCommander(2)));
     all_soldiers.push_back(tmp);
     for (int i = 0; i < 20; ++i) {
         switch (i%2){
@@ -78,8 +78,8 @@ TEST_CASE("Some forbidden moves"){
     CHECK_THROWS((game_board.move(1, {0,10}, Board::MoveDIR::Down))); // The destination is out of the board.
     CHECK_THROWS((game_board.move(2, {19,10}, Board::MoveDIR::Up))); // The destination is out of the board.
 
-    CHECK_THROWS((game_board.move(1, {1,0}, Board::MoveDIR::Right))); // The destination is out of the board.
-    CHECK_THROWS((game_board.move(2, {18,19}, Board::MoveDIR::Left))); // The destination is out of the board.
+    CHECK_THROWS((game_board.move(2, {19,19}, Board::MoveDIR::Right))); // The destination is out of the board.
+    CHECK_THROWS((game_board.move(2, {19,0}, Board::MoveDIR::Left))); // The destination is out of the board.
 
 }
 
