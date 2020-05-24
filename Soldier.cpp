@@ -5,14 +5,11 @@
 #include "Soldier.hpp"
 namespace WarGame {
     void Soldier::harm(uint damage, Soldier** pos){
-        int tmp = health();
         _health -= damage;
-//        std::cout << typeid(this).name() << " of team " << team()
-//            << ". before harm: " << tmp << ". after: "<<health()<< std::endl;
-        if(_health <= 0){
+
+        if(_health <= 0)
             *pos = nullptr;
-            delete this;
-        }
+
     }
     void Soldier::heal(){
         _health = _maxHealth;

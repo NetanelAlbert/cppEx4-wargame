@@ -43,6 +43,6 @@ namespace WarGame {
         if (nearest != nullptr)
             (*nearest)->harm(this->_damage, nearest);
         else
-            std::cerr << "FootSoldier::play- can't find someone to shoot at";
+            std::cerr << "FootSoldier::play- can't find someone to shoot at" << std::endl;
     }
 }

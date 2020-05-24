@@ -17,40 +17,50 @@ using namespace std;
 using namespace WarGame;
 
 Board game_board(20, 20);
+vector<Soldier*> all_soldiers;
 
 TEST_CASE("Create Soldiers"){
+    Soldier* tmp = nullptr;
     // Staging team 1 soldiers
-    CHECK_NOTHROW((game_board[{0,9}] = new FootCommander(1)));
-    CHECK_NOTHROW((game_board[{0,10}] = new ParamedicCommander(1)));
-    CHECK_NOTHROW((game_board[{0,11}] = new SniperCommander(1)));
+    CHECK_NOTHROW(tmp = (game_board[{0,9}] = new FootCommander(1)));
+    all_soldiers.push_back(tmp);
+    CHECK_NOTHROW(tmp = (game_board[{0,10}] = new ParamedicCommander(1)));
+    all_soldiers.push_back(tmp);
+    CHECK_NOTHROW(tmp = (game_board[{0,11}] = new SniperCommander(1)));
+    all_soldiers.push_back(tmp);
     for (int i = 0; i < 20; ++i) {
         switch (i%3){
             case 0:
-                CHECK_NOTHROW((game_board[{1,i}] = new FootSoldier(1)));
+                CHECK_NOTHROW(tmp = (game_board[{1,i}] = new FootSoldier(1)));
                 break;
             case 1:
-                CHECK_NOTHROW((game_board[{1,i}] = new Paramedic(1)));
+                CHECK_NOTHROW(tmp = (game_board[{1,i}] = new Paramedic(1)));
                 break;
             case 2:
-                CHECK_NOTHROW((game_board[{1,i}] = new Sniper(1)));
+                CHECK_NOTHROW(tmp = (game_board[{1,i}] = new Sniper(1)));
                 break;
         }
+        all_soldiers.push_back(tmp);
     }
 
     // Staging team 2 soldiers
 
-    CHECK_NOTHROW((game_board[{19,9}] = new FootCommander(2)));
-    CHECK_NOTHROW((game_board[{19,10}] = new ParamedicCommander(2)));
-    CHECK_NOTHROW((game_board[{19,11}] = new SniperCommander(2)));
+    CHECK_NOTHROW(tmp = (game_board[{19,9}] = new FootCommander(2)));
+    all_soldiers.push_back(tmp);
+    CHECK_NOTHROW(tmp = (game_board[{19,10}] = new ParamedicCommander(2)));
+    all_soldiers.push_back(tmp);
+    CHECK_NOTHROW(tmp = (game_board[{19,11}] = new SniperCommander(2)));
+    all_soldiers.push_back(tmp);
     for (int i = 0; i < 20; ++i) {
         switch (i%2){
             case 0:
-                        CHECK_NOTHROW((game_board[{18,i}] = new FootSoldier(2)));
+                        CHECK_NOTHROW(tmp = (game_board[{18,i}] = new FootSoldier(2)));
                 break;
             case 1:
-                        CHECK_NOTHROW((game_board[{18,i}] = new Sniper(2)));
+                        CHECK_NOTHROW(tmp = (game_board[{18,i}] = new Sniper(2)));
                 break;
         }
+        all_soldiers.push_back(tmp);
     }
 }
 
@@ -92,6 +102,12 @@ TEST_CASE("Play the game"){
     }
     CHECK(game_board.has_soldiers(1));
     CHECK(!game_board.has_soldiers(2));
+}
+
+TEST_CASE("Delete soldiers allocation"){
+    for (auto & soldier : all_soldiers) {
+        delete soldier;
+    }
 }
 
 void team_1_play(){
