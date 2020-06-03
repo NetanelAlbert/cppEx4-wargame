@@ -6,6 +6,8 @@
 #define CPPEX4_WARGAME_SNIPER_HPP
 
 #include "Soldier.hpp"
+
+using namespace WarGame;
 namespace WarGame {
     class Sniper : public Soldier{
     public:
